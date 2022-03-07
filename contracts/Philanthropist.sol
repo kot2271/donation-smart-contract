@@ -1,4 +1,4 @@
-//SPDX-License-Identifier: GPL-3.0
+//SPDX-License-Identifier: Unlicense
 pragma solidity ^0.8.0;
 
 import "hardhat/console.sol";
@@ -10,7 +10,11 @@ contract Philanthropist is ContractOwner {
 
     event Received(address, uint256);
 
+    fallback() external payable {
+    }
+
     receive() external payable {
+        require(msg.value > 0, "ERROR: Incorrect donation value.");
         if (donationsAmount[msg.sender] == 0) {
             users.push(msg.sender);
         }

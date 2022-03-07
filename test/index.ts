@@ -64,12 +64,12 @@ describe("Philanthropist", function () {
         ).to.equal(0);
         expect(
             parseFloat(ethers.utils.formatEther(await accountThree.getBalance()))
-        ).to.equal(10005);
+        ).to.equal(5);
     });
 
     it("List of users", async function () {
-        const {deploy} = await ethers.getContractFactory("Philanthropist");
-        const philanthropist = await deploy();
+        const Philanthropist = await ethers.getContractFactory("Philanthropist");
+        const philanthropist = await Philanthropist.deploy();
         await philanthropist.deployed();
         const [accountOne, accountTwo, accountThree] = await ethers.getSigners();
 
